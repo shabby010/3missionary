@@ -1,0 +1,45 @@
+### Your code ###
+boat_side = 'Right'
+missionaries_on_right = 3
+cannibals_on_right = 3
+missionaries_on_left = 0
+cannibals_on_left = 0
+boat_side, missionaries_on_right, cannibals_on_right, missionaries_on_left, cannibals_on_left
+print(f"M= {missionaries_on_left} C= {cannibals_on_left} |-----B| M= {missionaries_on_right} C= {cannibals_on_right}")
+
+while(True):
+    missionaries = int(input("Enter the numbers of missionaries: "))
+    cannibals = int(input("Enter the numbers of cannibals: "))
+    
+    if boat_side=='Right':
+        if missionaries>missionaries_on_right or cannibals>cannibals_on_right:
+            print("invalid")
+        else:
+            missionaries_on_right = missionaries_on_right - missionaries
+            cannibals_on_right = cannibals_on_right - cannibals
+            missionaries_on_left = missionaries + missionaries_on_left
+            cannibals_on_left = cannibals + cannibals_on_left
+            print(f"M= {missionaries_on_left} C= {cannibals_on_left} |B-----| M= {missionaries_on_right} C= {cannibals_on_right}")
+            boat_side = 'Left' 
+        
+    
+    elif boat_side=="Left":
+        if missionaries_on_left<missionaries or cannibals_on_left<cannibals:
+            print("invalid move")
+        else:
+            missionaries_on_left = missionaries_on_left - missionaries
+            cannibals_on_left = cannibals_on_left - cannibals
+            missionaries_on_right = missionaries + missionaries_on_right
+            cannibals_on_right = cannibals + cannibals_on_right
+            print(f"M= {missionaries_on_left} C= {cannibals_on_left} |-----B| M= {missionaries_on_right} C= {cannibals_on_right}")
+            boat_side = 'Right'
+    
+    if (missionaries_on_right<cannibals_on_right and missionaries_on_right>0) or (missionaries_on_left<cannibals_on_left and missionaries_on_left>0):
+        print("game over")
+        break
+    if (missionaries_on_left == 3) and (cannibals_on_left == 3):
+        print("YOU WIN ")
+        break
+        
+
+    
